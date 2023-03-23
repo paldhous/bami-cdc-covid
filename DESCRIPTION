@@ -1,0 +1,13 @@
+Package: bami
+Title: Processes Data for Berkeley Advanced Media Institute classes
+Version: 0.0.0.9000
+Authors@R: 
+    person("Peter", "Aldhous", , "peter@peteraldhous.com", role = c("aut", "cre"),
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: Processes Data for Berkeley Advanced Media Institute classes
+License: `use_mit_license()`
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2
+Depends: R (>= 4.13)
+
