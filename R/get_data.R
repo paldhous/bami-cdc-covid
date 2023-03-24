@@ -34,14 +34,17 @@ states_latest <- states_latest %>%
          week_deaths = new_deaths07) %>%
   inner_join(populations) %>%
   select(7,1:6,8) %>%
+  mutate(geocode_address = paste(state,state_postal)) %>%
   arrange(state)
 
 # geocode covid latest data
 states_latest <- geocode(states_latest,
-                         address = state,
+                         address = geocode_address,
                          method = "arcgis",
-                         full_results = FALSE)
+                         full_results = FALSE) %>%
+  select(-geocode_address)
 
 # write to csv
 write_csv(states_timeline, "states_timeline.csv", na = "")
 write_csv(states_latest, "states_latest.csv", na = "")
+
