@@ -4,7 +4,6 @@ library(readr)
 library(jsonlite)
 library(lubridate)
 library(janitor)
-library(tidygeocoder)
 
 # state population
 populations <- read_csv("state_pops.csv") %>%
