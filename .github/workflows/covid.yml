@@ -70,7 +70,7 @@ jobs:
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
-          git add -all
+          git add --all
           git commit -am "add data" || exit 0
           git push 
       - name: Session info
