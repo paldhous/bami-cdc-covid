@@ -1,6 +1,6 @@
 on:
   schedule:
-    - cron: "*/10 * * * *"
+    - cron: "0 23 * * *"
 
 jobs:
   generate-data:
@@ -51,8 +51,7 @@ jobs:
           path: ${{ env.R_LIBS_USER }}
           key: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-${{ hashFiles('.github/depends.Rds') }}
           restore-keys: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-
-
-      - uses: actions/setup-node@v3
+        uses: actions/setup-node@v3
         with:
           node-version: 16
 
