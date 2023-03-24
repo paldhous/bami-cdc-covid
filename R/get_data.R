@@ -4,6 +4,7 @@ library(readr)
 library(jsonlite)
 library(lubridate)
 library(janitor)
+library(tidygeocoder)
 
 # state population
 populations <- read_csv("state_pops.csv") %>%
@@ -34,6 +35,12 @@ states_latest <- states_latest %>%
   inner_join(populations) %>%
   select(7,1:6,8) %>%
   arrange(state)
+
+# geocode covid latest data
+states_latest <- geocode(states_latest,
+                         address = state,
+                         method = "arcgis",
+                         full_results = FALSE)
 
 # write to csv
 write_csv(states_timeline, "states_timeline.csv", na = "")
