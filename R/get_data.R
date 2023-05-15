@@ -19,28 +19,28 @@ states_timeline <- read_csv("https://data.cdc.gov/api/views/pwn4-m3yp/rows.csv?a
   arrange(state,week_end_date)
 
 # covid latest
-states_latest <- fromJSON("https://covid.cdc.gov/covid-data-tracker/COVIDData/getAjaxData?id=US_MAP_DATA")
-
-states_latest <- states_latest$US_MAP_DATA %>%
-  clean_names()
-
-states_latest <- states_latest %>%
-  select(state_postal = abbr,
-         week_end_date = us_trend_maxdate,
-         tot_cases,
-         tot_deaths = tot_death,
-         week_cases = new_cases07,
-         week_deaths = new_deaths07) %>%
-  inner_join(populations) %>%
-  select(7,1:6,8) %>%
-  arrange(state)
-
-# add lat and long to covid latest data
-states_geocoded <- read_csv("states_geocoded.csv")
-
-states_latest <- inner_join(states_latest,states_geocoded)
+# states_latest <- fromJSON("https://covid.cdc.gov/covid-data-tracker/COVIDData/getAjaxData?id=US_MAP_DATA")
+#
+# states_latest <- states_latest$US_MAP_DATA %>%
+#   clean_names()
+#
+# states_latest <- states_latest %>%
+#   select(state_postal = abbr,
+#          week_end_date = us_trend_maxdate,
+#          tot_cases,
+#          tot_deaths = tot_death,
+#          week_cases = new_cases07,
+#          week_deaths = new_deaths07) %>%
+#   inner_join(populations) %>%
+#   select(7,1:6,8) %>%
+#   arrange(state)
+#
+# # add lat and long to covid latest data
+# states_geocoded <- read_csv("states_geocoded.csv")
+#
+# states_latest <- inner_join(states_latest,states_geocoded)
 
 # write to csv
 write_csv(states_timeline, "states_timeline.csv", na = "")
-write_csv(states_latest, "states_latest.csv", na = "")
+# write_csv(states_latest, "states_latest.csv", na = "")
 
